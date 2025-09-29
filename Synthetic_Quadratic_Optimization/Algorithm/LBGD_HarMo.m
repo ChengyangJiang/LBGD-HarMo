@@ -51,7 +51,7 @@ theta_star_global = - Q_sum \ c_sum;  % (Σ A_i' A_i) θ = Σ A_i' b_i
 fprintf('=== Global optimum θ* (least squares normal equation) ===\n');
 disp(theta_star_global.');
 
-%% ---------------- Topology: Ring ----------------
+%% ---------------- Topology ----------------
 A = generate_ring_graph(n);
 G_ring = graph(A);
 L = laplacian(G_ring);
