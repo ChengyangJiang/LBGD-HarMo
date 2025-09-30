@@ -115,7 +115,7 @@ for t = 1:T
         val = val + 0.5 * th.' * Q{i} * th + c{i}.' * th;
     end
     F_sum(t) = val;
-end
+end 
 
 opt_err  = zeros(1,T);
 cons_err = zeros(1,T);
