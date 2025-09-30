@@ -81,7 +81,7 @@ for t = 1:T
     end
 
     g_t     = g0 * (gamma^t);
-    phi(:,t)= hic_vec(t, d);                 
+    phi(:,t)= HarMo_Sequence(t, d);                 
     x       = (theta - sigma) / g_t;         
 
     % projection → quantization → reconstruction
