@@ -42,7 +42,7 @@ fprintf('=== Global optimum θ* ===\n');
 disp(theta_star_global.');
 
 %% ================== Topology ==================
-A = generate_cycle_graph(n);  % adjacency matrix
+A = generate_ring_graph(n);  % adjacency matrix
 W = metropolis_from_adj(A);   % mixing matrix (symmetric, doubly stochastic)
 
 %% ================== Initialization ==================
