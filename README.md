@@ -10,5 +10,6 @@ The repository is organized into the following main components:
 
 - `Synthetic_Quadratic_Optimization`: code for synthetic numerical experiments.  
 - `Logistic_Regression`: code for logistic regression experiments.  
+- `Demo`: code for quick demonstration of both experiments.  
 
 If you find this repo useful, please cite our paper.
