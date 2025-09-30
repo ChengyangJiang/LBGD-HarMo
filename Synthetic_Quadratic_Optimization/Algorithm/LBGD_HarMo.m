@@ -42,12 +42,13 @@ end
 
 Q_sum = zeros(d,d); 
 c_sum = zeros(d,1);
+
 for i = 1:n
     Q_sum = Q_sum + Q{i}; 
     c_sum = c_sum + c{i};
 end
-theta_star_global = - Q_sum \ c_sum;  % (Σ A_i' A_i) θ = Σ A_i' b_i
 
+theta_star_global = - Q_sum \ c_sum;  % (Σ A_i' A_i) θ = Σ A_i' b_i
 fprintf('=== Global optimum θ* (least squares normal equation) ===\n');
 disp(theta_star_global.');
 
@@ -118,6 +119,7 @@ end
 
 opt_err  = zeros(1,T);
 cons_err = zeros(1,T);
+
 for t = 1:T
     tmp = 0;
     for i = 1:n
