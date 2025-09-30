@@ -44,7 +44,7 @@ fprintf('=== Global optimum θ* (least squares normal equation) ===\n');
 disp(theta_star_global.');
 
 %% ================== Topology ==================
-A = generate_cycle_graph(n);    
+A = generate_ring_graph(n);    
 W = metropolis_from_adj(A);        
 
 %% ================== Initialization ==================
