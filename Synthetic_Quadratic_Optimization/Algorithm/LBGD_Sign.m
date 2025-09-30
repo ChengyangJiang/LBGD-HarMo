@@ -1,5 +1,5 @@
 clc; 
-clear;
+clear; 
 
 %% ---------------- Hyperparameters ----------------
 T = 50000;                 % total iterations
