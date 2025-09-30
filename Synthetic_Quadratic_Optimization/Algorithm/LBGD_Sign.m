@@ -52,13 +52,13 @@ fprintf('=== Global optimum θ* (least squares normal equation) ===\n');
 disp(theta_star_global.');
 
 %% ---------------- Topology ----------------
-A = generate_cycle_graph(n);  
+A = generate_ring_graph(n);  
 G_ring = graph(A);
 L = laplacian(G_ring);         
 
 figure; 
 plot(G_ring,'Layout','circle'); 
-title(sprintf('Cycle Graph (n=%d)',n));
+title(sprintf('ring Graph (n=%d)',n));
 
 for i = 1:n
     Nlist{i} = neighbors(G_ring,i); 
