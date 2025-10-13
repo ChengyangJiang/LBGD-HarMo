@@ -25,12 +25,6 @@ opt_errdata_DSGD(50001)= opt_errdata_DSGD(50000);
 opt_errdata_LBGD_Sign(50001)= opt_errdata_LBGD_Sign(50000);
 opt_errdata_LBGD_HarMo(50001) = opt_errdata_LBGD_HarMo(50000);
 
-opt_errdata_DSGD(1) = 1;
-opt_errdata_CHOCO_Top(1)=1;
-opt_errdata_MoTEF_Top(1)=1;
-opt_errdata_LBGD_Sign(1)=1;
-opt_errdata_LBGD_HarMo(1)=1;
-
 figure('Units','inches','Position',[1 1 16 9]); 
 h1 = semilogy(100000, opt_errdata_DSGD(1),'d-', 'Color', colors5(1,:),'LineWidth', 2, 'MarkerFaceColor', colors5(1,:), 'MarkerSize', 15);hold on;grid on;
 semilogy(bit_DSGD_all(1:98:50001), opt_errdata_DSGD(1:98:50001),'-', 'Color', colors5(1,:),'LineWidth', 2); 
