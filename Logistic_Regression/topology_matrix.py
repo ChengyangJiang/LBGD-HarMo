@@ -1,4 +1,4 @@
-    def topology_matrix(self, topology: str, n_cores: int, p: float = 0.3) -> np.ndarray:
+    def topology_matrix(self, topology: str, n_cores: int, p: float = 0.1) -> np.ndarray:
 
         # === Ring topology ===
         if topology == 'ring':
