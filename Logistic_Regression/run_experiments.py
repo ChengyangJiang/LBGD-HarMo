@@ -11,7 +11,7 @@ def build_params(method, d, n, n_cores, num_epoch, split_name, random_seed):
         return Parameters(
             name="DSGD",
             num_epoch=num_epoch,
-            lr_type='decay',
+            lr_type='constant',
             initial_lr=0.1,
             tau=d,
             regularizer=1 / n,
@@ -27,9 +27,9 @@ def build_params(method, d, n, n_cores, num_epoch, split_name, random_seed):
 
     elif method == "CHOCO":
         return Parameters(
-            name="CHOCO-top-alpha",
+            name="CHOCO-Top",
             num_epoch=num_epoch,
-            lr_type='decay',
+            lr_type='constant',
             initial_lr=0.1,
             tau=d,
             regularizer=1 / n,
@@ -45,18 +45,37 @@ def build_params(method, d, n, n_cores, num_epoch, split_name, random_seed):
             estimate='final'
         )
 
-    elif method == "LBGD":
+    elif method == "LBGD_HarMo":
         return Parameters(
-            name="LBGD",
+            name="LBGD_HarMo",
             num_epoch=num_epoch,
-            lr_type='decay',
+            lr_type='constant',
+            initial_lr=0.1,
+            tau=d,
+            regularizer=1 / n,
+            quantization='HarMo_Quantizer', 
+            m1=1, m2=7,  
+            n_cores=n_cores,
+            method='LBGD_HarMo',
+            split_data_random_seed=random_seed,
+            distribute_data=True,
+            split_data_strategy=split_name,
+            topology='ring',
+            estimate='final'
+        )
+        
+        elif method == "LBGD_Sign":
+        return Parameters(
+            name="LBGD_Sign",
+            num_epoch=num_epoch,
+            lr_type='constant',
             initial_lr=0.1,
             tau=d,
             regularizer=1 / n,
             quantization='Sign_Quantizer', 
-            m1=6, m2=8,  
+            m1=1, m2=7,  
             n_cores=n_cores,
-            method='LBGD',
+            method='LBGD_Sign',
             split_data_random_seed=random_seed,
             distribute_data=True,
             split_data_strategy=split_name,
@@ -66,9 +85,9 @@ def build_params(method, d, n, n_cores, num_epoch, split_name, random_seed):
 
     elif method == "MoTEF":
         return Parameters(
-            name="MoTEF",
+            name="MoTEF_Top",
             num_epoch=num_epoch,
-            lr_type='decay',
+            lr_type='constant',
             initial_lr=0.1,
             tau=d,
             regularizer=1 / n,
