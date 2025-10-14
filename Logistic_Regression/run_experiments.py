@@ -56,7 +56,7 @@ def build_params(method, d, n, n_cores, num_epoch, split_name, random_seed):
             quantization='HarMo', 
             m1=6, m2=8,  
             n_cores=n_cores,
-            method='LBGD_HarMo',
+            method='LBGD',
             split_data_random_seed=random_seed,
             distribute_data=True,
             split_data_strategy=split_name,
