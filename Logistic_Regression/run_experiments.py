@@ -53,7 +53,7 @@ def build_params(method, d, n, n_cores, num_epoch, split_name, random_seed):
             initial_lr=0.1,
             tau=d,
             regularizer=1 / n,
-            quantization='HarMo', 
+            quantization='Sign_Quantizer', 
             m1=6, m2=8,  
             n_cores=n_cores,
             method='LBGD',
