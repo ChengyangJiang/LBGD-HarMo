@@ -11,11 +11,11 @@
             G = nx.cycle_graph(n_cores)
             comment = f"[Ring] Each node communicates with its two neighbors and itself."
 
-        # === Centralized topology ===
-        elif topology == 'centralized':
+        # === Fully topology ===
+        elif topology == 'Fully':
             W = np.ones((n_cores, n_cores), dtype=np.float64) / n_cores
             G = nx.complete_graph(n_cores)
-            comment = f"[Centralized] Fully connected network with uniform averaging."
+            comment = f"[Fully] Fully connected network with uniform averaging."
 
         # === Disconnected topology ===
         elif topology == 'disconnected':
