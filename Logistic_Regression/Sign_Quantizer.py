@@ -8,5 +8,7 @@ def Sign_Quantizer(X):
         x = X[:, j]
         norm1 = np.sum(np.abs(x))
         Y[:, j] = (norm1 / d) * np.where(x >= 0, 1, -1)
+
+    q = Y
     
-    return Y
+    return q
