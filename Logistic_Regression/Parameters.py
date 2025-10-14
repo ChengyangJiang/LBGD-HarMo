@@ -11,14 +11,14 @@ class Parameters:
                  epoch_decay_lr=None,
                  consensus_lr=None,
                  quantization="full",
-                 # proportion α in top-α quantization
+                 # proportion α in Top-α quantization
                  coordinates_to_keep=None,
                  estimate='final',
                  name=None,
                  # number of machines
                  n_cores=1,
-                 topology='centralized',
-                 method='choco',
+                 Topology='fully',
+                 method='DSGD',
                  distribute_data=False,
                  split_data_strategy=None,
                  tau=None,
@@ -39,33 +39,32 @@ class Parameters:
             assert regularizer > 0
         if lr_type == 'epoch-decay':
             assert epoch_decay_lr is not None
-        if method in ['choco']:
+        if method in ['CHOCO']:
             assert consensus_lr > 0
         else:
             assert consensus_lr is None
 
-        assert quantization in ['full', 'top', 'LBGD', 'sign']
+        assert quantization in ['full', 'Top', 'LBGD', 'Sign']
         if quantization == 'full':
             assert not coordinates_to_keep
-        elif quantization == 'top':
+        elif quantization == 'Top':
             assert coordinates_to_keep > 0
         elif quantization == 'LBGD':
             assert (m1 is not None) and (m2 is not None) and (m1 > 0) and (m2 >= 0)
-        elif quantization == 'sign':
+        elif quantization == 'Sign':
             assert not coordinates_to_keep
             assert m1 is None and m2 is None
 
         assert estimate in ['final', 'mean', 't+tau', '(t+tau)^2']
         assert n_cores > 0
-        assert topology in ['centralized', 'ring', 'torus', 'disconnected']
-        assert method in ['choco', 'plain', 'LBGD', 'sign', 'top']
+        assert Topology in ['fully', 'ring', 'torus', 'er']
+        assert method in ['CHOCO', 'DSGD', 'LBGD', 'MoTEF']
 
         if not distribute_data:
             assert not split_data_strategy
         else:
             assert split_data_strategy in ['naive', 'random', 'label-sorted']
 
-        # === assign ===
         self.num_epoch = num_epoch
         self.lr_type = lr_type
         self.initial_lr = initial_lr
@@ -77,7 +76,7 @@ class Parameters:
         self.estimate = estimate
         self.name = name
         self.n_cores = n_cores
-        self.topology = topology
+        self.Topology = Topology
         self.tau = tau
         self.real_update_every = real_update_every
         self.random_seed = random_seed
@@ -105,21 +104,17 @@ class Parameters:
             return f"lr{self.initial_lr}"
         elif self.lr_type == 'decay':
             return f"lr{self.initial_lr}decay{self.epoch_decay_lr}"
-        elif self.lr_type == 'custom':
-            return f"lr{self.initial_lr}/lambda*(t+{self.tau})"
-        elif self.lr_type == 'bottou':
-            return f"lr-bottou-{self.initial_lr}"
         else:
             return f"lr-{self.lr_type}"
     
     def sparse_str(self):
         sparse_str = self.quantization
-        if self.quantization == 'top':
+        if self.quantization == 'Top':
             sparse_str += f"{self.coordinates_to_keep}"
         elif self.quantization == 'LBGD':
             sparse_str += f"(m1={self.m1},m2={self.m2})"
-        elif self.quantization == 'sign':
-            sparse_str += ""   # sign 无额外参数
+        elif self.quantization == 'Sign':
+            sparse_str += ""
         return sparse_str
 
     def __repr__(self):
