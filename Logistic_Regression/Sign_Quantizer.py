@@ -1,8 +1,5 @@
 def Sign_Quantizer(X):
-    """
-    Sign quantizer.
-    Each column vector is scaled by its L1 norm / d, then replaced by ±1 signs.
-    """
+
     X = np.asarray(X)
     d, n = X.shape
     Y = np.zeros((d, n))
